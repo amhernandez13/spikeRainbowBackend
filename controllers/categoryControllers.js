@@ -26,7 +26,6 @@ async function categoryCreate(req, res) {
   try {
     const newCategory = await Category.create({
       name: req.body.name,
-      gender: req.body.gender,
     });
     res.json(newCategory);
   } catch (err) {
@@ -40,7 +39,6 @@ async function update(req, res) {
   try {
     const categoryModified = await Category.findById(req.params.id);
     categoryModified.name = req.body.name || categoryModified.name;
-    categoryModified.gender = req.body.gender || categoryModified.gender;
 
     await categoryModified.save();
     res.json(categoryModified);

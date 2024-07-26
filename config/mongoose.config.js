@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-mongoose.connect(`mongodb://localhost:27017/ecommerceIncognita`);
+mongoose.connect(`mongodb://localhost:27017/spikeRainbowDatabase`);
 //const connectToDataBase = async () =>{
 //   await mongoose.connect(process.env.MONGODB_URI,{dbName:'ecommerceIncognita'})
 //  try{

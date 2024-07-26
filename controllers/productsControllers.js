@@ -27,10 +27,8 @@ async function create(req, res) {
     const newProduct = await Product.create({
       name: req.body.name,
       description: req.body.description,
-      ref: req.body.ref,
-      size: req.body.size, // caracteristica añadida jct
-      color: req.body.color,
-      stock: req.body.stock,
+      category: req.body.category,
+      type: req.body.type, // caracteristica añadida jct
       price: req.body.price,
       image: req.body.image,
     });
@@ -48,10 +46,8 @@ async function update(req, res) {
     productModified.name = req.body.name || productModified.name;
     productModified.description =
       req.body.description || productModified.description;
-    productModified.ref = req.body.ref || productModified.ref;
-    productModified.size = req.body.size || productModified.size;
-    productModified.color = req.body.color || productModified.color;
-    productModified.stock = req.body.stock || productModified.stock;
+    productModified.category = req.body.category || productModified.category;
+    productModified.type = req.body.type || productModified.type;
     productModified.price = req.body.price || productModified.price;
 
     await productModified.save();

@@ -3,10 +3,8 @@ import mongoose from "../config/mongoose.config.js";
 const productSchema = mongoose.Schema({
   name: String,
   description: String,
-  ref: Number,
-  size: String,
-  color: String,
-  stock: Number,
+  category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
+  type: { type: mongoose.Schema.Types.ObjectId, ref: "Type" },
   price: Number,
   image: String,
 });

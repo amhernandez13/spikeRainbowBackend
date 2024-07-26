@@ -11,7 +11,7 @@ import usersControllers from "./controllers/usersControllers.js";
 import cors from "cors";
 import authControllers from "./controllers/authControllers.js";
 import orderController from "./controllers/orderController.js";
-
+import typeControllers from "./controllers/typeController.js";
 
 const app = express();
 
@@ -80,22 +80,35 @@ app.delete("/api/category/:id", categoryControllers.deleteCategory);
 // Rutas de Auth
 app.post("/api/auth/login", authControllers.login);
 app.post("/api/auth/register", usersControllers.create);
-app.post("/api/auth/validate", authControllers.tokenIsValid)
+app.post("/api/auth/validate", authControllers.tokenIsValid);
 
 // Rutas de order
 app.post(
-  "/api/orders", 
-  expressjwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }), 
-  orderController.create);
+  "/api/orders",
+  expressjwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }),
+  orderController.create
+);
 
 app.get(
-  "/api/orders", 
-  expressjwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }), 
-  orderController.list);
+  "/api/orders",
+  expressjwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }),
+  orderController.list
+);
 
-app.get("/api/rutaprivada", expressjwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }), async (req, res) => {
-  return res.json("Ruta privada")
-})
+app.get(
+  "/api/rutaprivada",
+  expressjwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }),
+  async (req, res) => {
+    return res.json("Ruta privada");
+  }
+);
+
+// Rutas de type
+app.get("/api/type", typeControllers.typeList);
+app.get("/api/type/:id", typeControllers.listOne);
+app.post("/api/type", typeControllers.typeCreate);
+app.patch("/api/type/:id", typeControllers.update);
+app.delete("/api/type/:id", typeControllers.deleteType);
 
 app.listen(3000, () => {
   console.log("servidor corriendo en el puerto 3000");
